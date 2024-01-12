@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIRTHDAY</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #EEF2F3, #D9E2E8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2B2C28;
+        }
+
+        #nameForm {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4F5766;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        input[type="checkbox"]:checked {
+            background: rgb(61, 228, 100);
+            box-shadow: 0 0 10px rgba(61, 228, 100, 0.7);
+        }
+
+        input[type="checkbox"]:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, rgba(61, 228, 100, 0.7), rgba(61, 228, 100, 0.2));
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        input[type="checkbox"]:checked:before {
+            opacity: 1;
+        }
+
+        input[type="submit"] {
+            background: #4F5766;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #39424E;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Select Your Name</h1>
+
+    <form id="nameForm" action="process.php" method="post">
+        <label><input type="checkbox" name="name" value="John"> ANGEL</label>
+        <label><input type="checkbox" name="name" value="Jane"> AKSHIT</label>
+        <label><input type="checkbox" name="name" value="Bob"> ARMAAN</label>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                checkboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.disabled = checkbox.checked;
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
